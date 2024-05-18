@@ -16,4 +16,4 @@ async def get_values(user: Users = Depends(get_current_admin_user)):
 
 @router_values.get("/{sensor_id}")
 async def get_component(sensor_id: int):
-    await ValuesDAO.find_one_or_none(sensor_id=sensor_id)
+    await ValuesDAO.find_all(sensor_id=sensor_id)
