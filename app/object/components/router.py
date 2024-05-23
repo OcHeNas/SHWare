@@ -18,9 +18,9 @@ router_components = APIRouter(
 async def get_components(user: Users = Depends(get_current_admin_user)):
     return await ComponentsDAO.find_all()
 
-@router_components.get("/{component_id}")
-async def get_component(component_id: int):
-    return await ComponentsDAO.find_one_or_none(id=component_id)
+@router_components.get("/{id_object}")
+async def get_component(id_object: int):
+    return await ComponentsDAO.find_all(object_id=id_object)
 
 
 @router_components.post("/add")

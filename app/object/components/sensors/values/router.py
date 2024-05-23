@@ -14,6 +14,6 @@ router_values = APIRouter(
 async def get_values(user: Users = Depends(get_current_admin_user)):
     return await ValuesDAO.find_all()
 
-@router_values.get("/{sensor_id}")
-async def get_component(sensor_id: int):
-    await ValuesDAO.find_all(sensor_id=sensor_id)
+@router_values.get("/{id_sensor}")
+async def get_component(id_sensor: int):
+    await ValuesDAO.find_all(sensor_id=id_sensor)

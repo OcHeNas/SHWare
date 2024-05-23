@@ -15,9 +15,9 @@ router_TW = APIRouter(
 async def get_TW(user: Users = Depends(get_current_admin_user)):
     return await TW_DAO.find_all()
 
-@router_TW.get("/{TW_id}")
-async def get_TW(TW_id: int):
-    await TW_DAO.find_one_or_none(id=TW_id)
+@router_TW.get("/{id_object}")
+async def get_TW(id_object: int):
+    await TW_DAO.find_all(object_id=id_object)
 
 
 @router_TW.post("/add")
