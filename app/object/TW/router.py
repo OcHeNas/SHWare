@@ -12,7 +12,9 @@ router_TW = APIRouter(
 )
 
 @router_TW.get("/all")
-async def get_TW(user: Users = Depends(get_current_admin_user)):
+async def get_TW(
+    #user: Users = Depends(get_current_admin_user)
+    ):
     return await TW_DAO.find_all()
 
 @router_TW.get("/{id_object}")

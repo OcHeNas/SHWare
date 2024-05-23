@@ -11,7 +11,9 @@ router_values = APIRouter(
 )
 
 @router_values.get("/all")
-async def get_values(user: Users = Depends(get_current_admin_user)):
+async def get_values(
+    #user: Users = Depends(get_current_admin_user)
+    ):
     return await ValuesDAO.find_all()
 
 @router_values.get("/{id_sensor}")

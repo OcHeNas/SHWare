@@ -15,7 +15,9 @@ router_object = APIRouter(
 )
 
 @router_object.get("/all")
-async def get_objects(user: Users = Depends(get_current_admin_user)):
+async def get_objects(
+    #user: Users = Depends(get_current_admin_user)
+    ):
     return await ObjectDAO.find_all()
 
 
@@ -24,13 +26,17 @@ async def get_my_objects(user: Users = Depends(get_current_user)):
     return await ObjectDAO.find_all(responsible_person_id=user.id)
 
 @router_object.post("/add")
-async def add_new_object(object_data: SObject, user: Users = Depends(get_current_admin_user)):
+async def add_new_object(object_data: SObject
+                         #, user: Users = Depends(get_current_admin_user)
+                         ):
     new_object = await ObjectDAO.add(name=object_data.name, description=object_data.description, status=object_data.status)
     if not new_object:
         raise CannotAddDataToDatabase
     
 @router_object.put("/edit")
-async def update_specific_object(object_id: int, new_object: SObjectEdit, user: Users = Depends(get_current_admin_user)):
+async def update_specific_object(object_id: int, new_object: SObjectEdit
+                                 #, user: Users = Depends(get_current_admin_user)
+                                 ):
     async with async_session_maker() as session:
         query = select(Object).where(Object.id == object_id)
         existing_object = (await session.execute(query)).scalar_one_or_none()
@@ -47,5 +53,7 @@ async def update_specific_object(object_id: int, new_object: SObjectEdit, user: 
             return {"status": "error", "message": f"Department with description '{object_id}' not found"}
         
 @router_object.delete("/{object_id}")
-async def remove_object(object_id: int, user: Users = Depends(get_current_admin_user)):
+async def remove_object(object_id: int
+                        #, user: Users = Depends(get_current_admin_user)
+                        ):
     await ObjectDAO.delete(id=object_id)
