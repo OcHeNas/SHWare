@@ -22,7 +22,7 @@ async def get_manufacturer(
 
 @router_manufacturer.get("/{manufacturer_id}")
 async def get_manufacturer(manufacturer_id: int):
-    await ManufacturerDAO.find_one_or_none(id=manufacturer_id)
+    return await ManufacturerDAO.find_one_or_none(id = manufacturer_id)
 
 
 @router_manufacturer.post("/add")
