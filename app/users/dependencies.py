@@ -1,7 +1,6 @@
 from fastapi import Depends, Request, HTTPException, status
 from jose import ExpiredSignatureError, JWTError, jwt
-from fastapi.security import OAuth2PasswordBearer
-from typing import Annotated
+#from fastapi.security import OAuth2PasswordBearer
 
 from app.config import settings
 from app.exceptions import (
@@ -13,17 +12,24 @@ from app.exceptions import (
 from app.users.dao import UserDAO
 from app.users.models import Users
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+# oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+# def get_token(authorization: str = Depends(oauth2_scheme)):
+#     if not authorization:
+#         raise TokenAbsentException
+#     return authorization
 
 
 # def get_token(request: Request):
-#     token = request.cookies.get("my_access_token")
-#     if not token:
-#         raise TokenAbsentException
-#     return token
+#       token = request.cookies.get("my_access_token")
+#       if not token:
+#          raise TokenAbsentException
+#       return token
 
-
-async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
+async def get_current_user(token: str
+                            #= Depends(get_token)
+                            ):
     try:
         payload = jwt.decode(
             token, settings.SECRET_KEY, settings.ALGORITHM
