@@ -1,6 +1,5 @@
 from fastapi import Depends, Request, HTTPException, status
 from jose import ExpiredSignatureError, JWTError, jwt
-#from fastapi.security import OAuth2PasswordBearer
 
 from app.config import settings
 from app.exceptions import (
@@ -11,15 +10,6 @@ from app.exceptions import (
 )
 from app.users.dao import UserDAO
 from app.users.models import Users
-
-
-# oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-
-# def get_token(authorization: str = Depends(oauth2_scheme)):
-#     if not authorization:
-#         raise TokenAbsentException
-#     return authorization
-
 
 # def get_token(request: Request):
 #       token = request.cookies.get("my_access_token")

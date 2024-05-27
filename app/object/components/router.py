@@ -15,7 +15,9 @@ router_components = APIRouter(
 )
 
 @router_components.get("/all")
-async def get_components(user: Users = Depends(get_current_admin_user)):
+async def get_components(
+    #user: Users = Depends(get_current_admin_user)
+    ):
     return await ComponentsDAO.find_all()
 
 @router_components.get("/{id_object}")
