@@ -18,4 +18,4 @@ async def get_values(
 
 @router_values.get("/{id_sensor}")
 async def get_component(id_sensor: int):
-    await ValuesDAO.find_all(sensor_id=id_sensor)
+    return await ValuesDAO.find_all(sensor_id=id_sensor)
