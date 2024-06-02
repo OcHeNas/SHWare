@@ -1,9 +1,8 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter#, Depends
 
 from app.object.components.sensors.values.dao import ValuesDAO
-from app.object.components.sensors.values.schemas import SValue
-from app.users.models import Users
-from app.users.dependencies import get_current_admin_user
+#from app.users.models import Users
+#from app.users.dependencies import get_current_admin_user
 
 router_values = APIRouter(
     prefix="/values",
@@ -18,4 +17,4 @@ async def get_values(
 
 @router_values.get("/{id_sensor}")
 async def get_component(id_sensor: int):
-    return await ValuesDAO.find_all(sensor_id=id_sensor)
+    return await ValuesDAO.find_values_by_sensor_id(id_sensor)
