@@ -15,9 +15,7 @@ router_sensor = APIRouter(
 )
 
 @router_sensor.get("/all")
-async def get_sensor(
-    #user: Users = Depends(get_current_admin_user)
-    ) -> list[SSensorGet]:
+async def get_sensor(user: Users = Depends(get_current_admin_user)) -> list[SSensorGet]:
     return await SensorDAO.find_all()
 
 @router_sensor.get("/{id_component}")
