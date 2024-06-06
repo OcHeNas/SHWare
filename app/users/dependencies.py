@@ -11,15 +11,13 @@ from app.exceptions import (
 from app.users.dao import UserDAO
 from app.users.models import Users
 
-# def get_token(request: Request):
-#       token = request.cookies.get("my_access_token")
-#       if not token:
-#          raise TokenAbsentException
-#       return token
+def get_token(request: Request):
+       token = request.cookies.get("my_access_token")
+       if not token:
+          raise TokenAbsentException
+       return token
 
-async def get_current_user(token: str
-                            #= Depends(get_token)
-                            ):
+async def get_current_user(token: str = Depends(get_token)):
     try:
         payload = jwt.decode(
             token, settings.SECRET_KEY, settings.ALGORITHM
